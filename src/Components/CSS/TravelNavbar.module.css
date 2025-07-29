@@ -1,0 +1,76 @@
+/* src/components/TravelNavbar.css */
+
+/* Enhanced Navbar Styles */
+
+/* Brand: override Bootstrap's .navbar-brand */
+:global(.navbar-brand).navbarBrandCustom,
+.navbarBrandCustom {
+  font-weight: bold;
+  color: #2563eb !important;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  transition: color 0.3s, text-shadow 0.3s;
+  text-shadow: 0 2px 8px #dbeafe80;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none !important;
+  border: none !important;
+}
+
+:global(.navbar-brand).navbarBrandCustom:hover,
+.navbarBrandCustom:hover {
+  color: #1e40af !important;
+  text-decoration: none;
+  text-shadow: 0 4px 16px #60a5fa80;
+}
+
+/* Nav links: override Bootstrap's .nav-link */
+:global(.nav-link).navLinkCustom,
+.navLinkCustom {
+  color: #2563eb !important;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
+  position: relative;
+  padding: 0.45rem 1.2rem;
+  border-radius: 0.4rem;
+  margin: 0 0.1rem;
+  background: linear-gradient(90deg, #f0f6ff 60%, #dbeafe 100%);
+  background-clip: padding-box;
+  border: none !important;
+}
+
+:global(.nav-link).navLinkCustom:hover,
+:global(.nav-link).navLinkCustom:focus,
+.navLinkCustom:hover,
+.navLinkCustom:focus {
+  color: #1e40af !important;
+  background: linear-gradient(90deg, #dbeafe 60%, #f0f6ff 100%);
+  box-shadow: 0 2px 8px #dbeafe80;
+  text-decoration: none;
+}
+
+/* Register link: override Bootstrap's .nav-link and add custom style */
+:global(.nav-link).registerLink,
+.registerLink {
+  border: none !important;
+  padding: 0.45rem 1.4rem !important;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #60a5fa 60%, #3b82f6 100%);
+  color: #fff !important;
+  box-shadow: 0 2px 12px #60a5fa40;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+  margin-left: 0.8rem;
+}
+
+:global(.nav-link).registerLink:hover,
+:global(.nav-link).registerLink:focus,
+.registerLink:hover,
+.registerLink:focus {
+  background: linear-gradient(90deg, #2563eb 60%, #1e40af 100%);
+  color: #fff !important;
+  box-shadow: 0 4px 16px #2563eb40;
+  text-decoration: none;
+}
