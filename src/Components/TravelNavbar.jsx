@@ -1,7 +1,8 @@
 import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import styles from './CSS/TravelNavbar.module.css';
-import logo from './assets/tripwise-logo.png'; // Adjust path if needed
+import logo from './assets/tripwise-logo.png';
+import { NAV_ITEMS } from './NavItems.jsx';
 
 function TravelNavbar() {
   return (
@@ -19,29 +20,25 @@ function TravelNavbar() {
               width: 72,
               height: 72,
               objectFit: 'contain',
-              display: 'block'
+              display: 'block',
             }}
           />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar" />
         <Navbar.Collapse id="main-navbar" className="justify-content-end">
-          <Nav className="ms-auto" style={{ alignItems: 'center' }}>
-            <Nav.Link href="#how-it-works" className={styles.navLinkCustom}>
-              How It Works
-            </Nav.Link>
-            <Nav.Link href="#contact" className={styles.navLinkCustom}>
-              Contact Us
-            </Nav.Link>
-            <Nav.Link href="#login" className={styles.navLinkCustom}>
-              Login
-            </Nav.Link>
-            <Nav.Link
-              href="#register"
-              className={`${styles.navLinkCustom} ${styles.registerLink}`}
-              style={{ marginLeft: '0.8rem', fontWeight: '600' }}
-            >
-              Register
-            </Nav.Link>
+          <Nav
+            className="ms-auto"
+            style={{ alignItems: 'center', display: 'flex', gap: '1.2rem' }}
+          >
+            {NAV_ITEMS.map((item) => (
+              <Nav.Link
+                key={item.label}
+                href={item.href}
+                className={item.label === 'Register' ? styles.registerNavLink : styles.navLinkCustom}
+              >
+                {item.label}
+              </Nav.Link>
+            ))}
           </Nav>
         </Navbar.Collapse>
       </Container>

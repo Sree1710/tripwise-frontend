@@ -3,11 +3,7 @@ import { Container } from 'react-bootstrap';
 
 function Footer() {
   return (
-    <footer
-      className="text-center shadow-sm py-4"
-      id="contact"
-      style={{ backgroundColor: '#f0f6ff' }} // Light blue, matches feature section
-    >
+    <footer className="text-center shadow-sm py-4" id="contact" style={{ backgroundColor: '#f0f6ff' }}>
       <Container>
         <address className="mb-1" style={{ color: '#1e3a8a', fontSize: 16 }}>
           Contact us: <a href="mailto:tripwise@example.com" style={{ color: '#2563eb' }}>tripwise@example.com</a>

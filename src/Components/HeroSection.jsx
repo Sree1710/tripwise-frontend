@@ -1,52 +1,37 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
-// Example of 6 travel-themed image URLs from Unsplash
 const images = [
-  // Jodhpur Blue City - Perfect for your blue theme
   "https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=1200&q=80",
-  
-  // Kerala Backwaters - Blue water and sky
   "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=80",
-  
-  // Ladakh Mountains - Cool blue tones
   "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1200&q=80",
-  
-  // Goa Beach - Blue ocean and sky
   "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=80",
-  
-  // Rishikesh - River and mountains
   "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80"
 ];
-
-
-
-
-
 
 function HeroSection() {
   const [current, setCurrent] = useState(0);
   const intervalRef = useRef();
 
   // Helper to clear and restart interval
-  const startInterval = () => {
+  const startInterval = useRef(() => {
     clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setCurrent(prev => (prev + 1) % images.length);
-    }, 5000); // 5 seconds
+    }, 5000);
+  }).current;
+
+  // Helper to handle manual navigation
+  const handleIndicatorClick = (idx) => {
+    setCurrent(idx);
+    // Restart interval when manually navigating
+    startInterval();
   };
 
   useEffect(() => {
     startInterval();
     return () => clearInterval(intervalRef.current);
-    // eslint-disable-next-line
-  }, []);
-
-  // When current changes (by click), restart interval
-  useEffect(() => {
-    startInterval();
-    // eslint-disable-next-line
-  }, [current]);
+  }, []); // Only run on mount and cleanup on unmount
 
   return (
     <div
@@ -63,7 +48,7 @@ function HeroSection() {
         <Row className="align-items-center">
           <Col md={12}>
             <h1 className="display-3 fw-bold mb-3" style={{ color: '#1e3a8a' }}>
-              Explore the World<br /> with <span style={{ color: '#135ebaff' }}>TripWise</span>
+              Explore the World<br /> with <span style={{ color: '#135eba' }}>TripWise</span>
             </h1>
             <p className="lead mb-4" style={{ color: '#1e40af' }}>
               Plan and experience smooth, safe, and customized travels — right from your browser.
@@ -96,7 +81,7 @@ function HeroSection() {
               transition: 'background 0.3s, border 0.3s',
               cursor: 'pointer'
             }}
-            onClick={() => setCurrent(idx)} // Optional: enable click on indicators
+            onClick={() => handleIndicatorClick(idx)}
           />
         ))}
       </div>

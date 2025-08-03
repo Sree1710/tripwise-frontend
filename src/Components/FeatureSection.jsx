@@ -7,7 +7,9 @@ function FeaturesSection() {
     <Container className="py-5" id="how-it-works">
       <Row className="text-center mb-5">
         <Col>
-          <h2 className="fw-bold" style={{ color: '#1e3a8a' }}>Why Travel with TripWise?</h2>
+          <h2 className="fw-bold" style={{ color: '#1e3a8a' }}>
+            Why Travel with TripWise?
+          </h2>
         </Col>
       </Row>
       <Row>
@@ -16,7 +18,9 @@ function FeaturesSection() {
             <Card.Body>
               <FaMapMarkedAlt size={48} color="#2563eb" className="mb-3" />
               <Card.Title>Smart Itineraries</Card.Title>
-              <Card.Text>Personalized AI-generated plans based on your interests and budget.</Card.Text>
+              <Card.Text>
+                Personalized AI-generated plans based on your interests and budget.
+              </Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -25,7 +29,9 @@ function FeaturesSection() {
             <Card.Body>
               <FaCloudSun size={48} color="#60a5fa" className="mb-3" />
               <Card.Title>Real-Time Intelligence</Card.Title>
-              <Card.Text>Weather & safety alerts help you travel stress-free.</Card.Text>
+              <Card.Text>
+                Weather & safety alerts help you travel stress-free.
+              </Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -34,7 +40,9 @@ function FeaturesSection() {
             <Card.Body>
               <FaShieldAlt size={48} color="#38bdf8" className="mb-3" />
               <Card.Title>Safety First</Card.Title>
-              <Card.Text>Travel with confidence using AI-powered local risk analysis.</Card.Text>
+              <Card.Text>
+                Travel with confidence using AI-powered local risk analysis.
+              </Card.Text>
             </Card.Body>
           </Card>
         </Col>
