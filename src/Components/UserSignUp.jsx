@@ -139,54 +139,6 @@ const SignInText = styled.div`
   }
 `;
 
-const Divider = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #aaa;
-  font-size: 0.97rem;
-  margin-bottom: 10px;
-
-  &:before,
-  &:after {
-    content: "";
-    height: 1px;
-    flex: 1;
-    background: #ececec;
-    margin: 0 10px;
-  }
-`;
-
-const SocialButtons = styled.div`
-  display: flex;
-  gap: 14px;
-  justify-content: center;
-  margin-top: 12px;
-
-  button {
-    background: #f3f3f3;
-    border: 1px solid #e6e6e6;
-    border-radius: 7px;
-    padding: 9px 15px;
-    cursor: pointer;
-    font-size: 1.13rem;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    transition: background 0.13s;
-
-    &:hover {
-      background: #ededed;
-    }
-
-    img {
-      width: 18px;
-      height: 18px;
-      display: inline;
-    }
-  }
-`;
-
 // Password toggle icon container (styled span)
 const ShowPasswordIcon = styled.span`
   position: absolute;
@@ -209,10 +161,13 @@ const RegisterPage = () => {
         lastName: "",
         dob: "",
         location: "",
+        contactNumber: "",
         email: "",
         password: "",
+        confirmPassword: "",
     });
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -223,9 +178,14 @@ const RegisterPage = () => {
     };
 
     const togglePassword = () => setShowPassword((prev) => !prev);
+    const toggleConfirmPassword = () => setShowConfirmPassword((prev) => !prev);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (form.password !== form.confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
         // Your submission logic here
         alert("Submitted: " + JSON.stringify(form, null, 2));
     };
@@ -283,6 +243,16 @@ const RegisterPage = () => {
                                 required
                             />
                         </FormGroup>
+                        <Input
+                            type="tel"
+                            name="contactNumber"
+                            placeholder="Contact Number"
+                            value={form.contactNumber}
+                            onChange={handleChange}
+                            pattern="^\+?[0-9\s\-]{7,15}$"
+                            title="Enter a valid phone number"
+                            required
+                        />
                         <Input
                             type="email"
                             name="email"
@@ -359,6 +329,74 @@ const RegisterPage = () => {
                                 )}
                             </ShowPasswordIcon>
                         </div>
+                        <div style={{ position: "relative", marginBottom: "14px" }}>
+                            <Input
+                                type={showConfirmPassword ? "text" : "password"}
+                                name="confirmPassword"
+                                placeholder="Confirm Password"
+                                value={form.confirmPassword}
+                                onChange={handleChange}
+                                required
+                            />
+                            <ShowPasswordIcon
+                                onClick={toggleConfirmPassword}
+                                title={showConfirmPassword ? "Hide Password" : "Show Password"}
+                                aria-label={showConfirmPassword ? "Hide Password" : "Show Password"}
+                            >
+                                {showConfirmPassword ? (
+                                    // Same eye icon as above for consistency
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M1 12C1 12 5 4 12 4C19 4 23 12 23 12"
+                                            stroke="#000"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M1 12C1 12 5 20 12 20C19 20 23 12 23 12"
+                                            stroke="#000"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <circle
+                                            cx="12"
+                                            cy="12"
+                                            r="3"
+                                            stroke="#000"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                ) : (
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M2 2L22 22"
+                                            stroke="#000"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M6.71277 6.7226C3.66479 8.79527 2 12 2 12C2 12 5.63636 19 12 19C14.0503 19 15.8174 18.2734 17.2711 17.2884M11 5.05822C11.3254 5.02013 11.6588 5 12 5C18.3636 5 22 12 22 12C22 12 21.3082 13.3317 20 14.8335"
+                                            stroke="#000"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <path
+                                            d="M14 14.2362C13.4692 14.7112 12.7684 15.0001 12 15.0001C10.3431 15.0001 9 13.657 9 12.0001C9 11.1764 9.33193 10.4303 9.86932 9.88818"
+                                            stroke="#000"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                )}
+                            </ShowPasswordIcon>
+                        </div>
                         <Button type="submit">Sign Up</Button>
                     </form>
                     <SignInText>
@@ -367,16 +405,6 @@ const RegisterPage = () => {
                     <SignInText>
                         Want to go back? <a href="/">Go To Homepage</a>
                     </SignInText>
-                    <Divider>or continue with</Divider>
-                    <SocialButtons>
-                        <button>
-                            <img
-                                src="https://img.icons8.com/color/48/000000/google-logo.png"
-                                alt="Google"
-                            />{" "}
-                            Google
-                        </button>
-                    </SocialButtons>
                 </FormBox>
             </Right>
         </Container>

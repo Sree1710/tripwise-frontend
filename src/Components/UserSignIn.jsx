@@ -18,9 +18,9 @@ const LeftSide = styled.div`
   padding: 40px 40px 80px 40px;
   border-radius: 20px 0 0 20px;
   position: relative;
+  overflow: hidden;  /* Ensures overlay stays contained */
 
   &::before {
-    content: "LOGO";
     position: absolute;
     top: 24px;
     left: 32px;
@@ -29,8 +29,24 @@ const LeftSide = styled.div`
     color: #fff;
     opacity: 0.9;
     letter-spacing: 1px;
+    z-index: 2;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(24, 78, 137, 0.3); /* semi-transparent blue */
+    z-index: 1;
+  }
+
+  /* Make sure content appears above the overlay */
+  > * {
+    position: relative;
+    z-index: 3;
   }
 `;
+
 
 const HeroText = styled.div`
   max-width: 440px;
